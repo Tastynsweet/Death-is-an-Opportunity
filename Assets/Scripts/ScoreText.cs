@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -12,6 +10,6 @@ public class ScoreText : MonoBehaviour
     void Update()
     {
         currentFaith = scoreCount.GetFaithScore();
-        faithText.text = "HOPE: " + currentFaith.ToString();
+        faithText.text = "Faith: " + currentFaith.ToString();
     }
 }

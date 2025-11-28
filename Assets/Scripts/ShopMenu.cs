@@ -1,13 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class ShopMenu : MonoBehaviour
 {
     public static bool onMenu = false;
     public GameObject shopMenuUI;
-
+    public ScoreCount scoreCount;
+    public Unlockables unlockables;
+ 
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -33,7 +32,29 @@ public class ShopMenu : MonoBehaviour
     void InShop()
     {
         shopMenuUI.SetActive(true);
-        Time.timeScale = 0.3f;
+        Time.timeScale = 0.0f;
         onMenu = true;
+    }
+
+    public bool PurchaseItem(int upgradeIndex)
+    {
+        Upgrades upgrade = unlockables.upgradeLists[upgradeIndex];
+
+        if (!upgrade.isUnlocked && scoreCount.GetFaithScore() >= upgrade.faithRequired)
+        {
+            scoreCount.RemoveFaith(upgrade.faithRequired);
+
+            upgrade.isUnlocked = true;
+
+            upgrade.Appear();
+
+            FaithProducer faithProducer = upgrade.instance.AddComponent<FaithProducer>();
+            faithProducer.unlocks = upgrade;
+            faithProducer.scoreCount = scoreCount;
+
+            return true;
+        }
+
+        return false;
     }
 }

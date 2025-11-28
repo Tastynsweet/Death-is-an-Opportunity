@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ScoreCount : MonoBehaviour
 {
-    [SerializeField] private int faithCount;
+    public int faithCount;
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0) && !ShopMenu.onMenu)
         {
             faithCount++;
         }
@@ -22,5 +20,10 @@ public class ScoreCount : MonoBehaviour
     public void AddFaith(int faith)
     {
         faithCount = faith + faithCount;
+    }
+
+    public void RemoveFaith(int faith)
+    {
+        faithCount = faithCount - faith;
     }
 }

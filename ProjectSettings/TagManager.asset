@@ -3,7 +3,8 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Audio
   layers:
   - Default
   - TransparentFX
@@ -55,4 +56,7 @@ TagManager:
     locked: 0
   - name: Front Objects
     uniqueID: 4161100465
+    locked: 0
+  - name: Very Front
+    uniqueID: 1345439221
     locked: 0
